@@ -1,11 +1,11 @@
 import './App.css'
-import DashboardLayout from './components/layouts/DashboardLayout'
-
+import AppRoutes from './routes/AppRoutes'
+//  className='inter-font'
 function App() {
 
   return (
-    <div className='inter-font'>
-      <DashboardLayout />
+    <div>
+      <AppRoutes />
     </div>
   )
 }
