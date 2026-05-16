@@ -1,7 +1,8 @@
 import React from 'react'
 
-const StateCards = ({ stat }) => {
-    console.log(stat)
+const StateCards = ({ stat, dashboard }) => {
+    // console.log(dashboard.user)
+    // const users = dashboard.user
     return (
         <div className='lg:w-58 h-15 border flex items-center justify-evenly border-gray-400 rounded'>
             <div className='mt-1 ml-2 p-5 '>img</div>
