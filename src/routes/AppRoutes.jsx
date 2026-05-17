@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router'
 import Dashboard from '../pages/Dashboard'
-import StateCards from '../pages/StateCards'
+// import StateCards from '../pages/StateCards'
 
 const AppRoutes = () => {
     return (
@@ -9,7 +9,7 @@ const AppRoutes = () => {
             <BrowserRouter>
                 <Routes>
                     <Route path='/' element={<Dashboard />} />
-                    <Route path='/stats' element={<StateCards />} />
+                    {/* <Route path='/stats' element={<StateCards />} /> */}
                 </Routes>
             </BrowserRouter>
         </div>

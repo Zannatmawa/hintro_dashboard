@@ -1,4 +1,5 @@
 import { getDashboard } from "../api/api";
+import { getProfile } from "../api/profileApi";
 import HeroSection from "../components/dashboard/HeroSection";
 import DashboardLayout from "../layouts/DashboardLayout";
 import RecentCalls from "./RecentCalls";
@@ -7,22 +8,36 @@ import { useEffect, useState } from 'react'
 
 
 const Dashboard = () => {
-    const [dashboard, setDashboard] = useState()
+    // const [dashboard, setDashboard] = useState()
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         const data = await getDashboard("u2");
+    //         setDashboard(data);
+    //     };
+    //     console.log(dashboard)
+    //     fetchData();
+    // }, []);
+    const [user, setUser] = useState()
     useEffect(() => {
         const fetchData = async () => {
-            const data = await getDashboard("u2");
-            setDashboard(data);
+            const data = await getProfile("u2");
+            setUser(data);
         };
-
         fetchData();
     }, []);
-    // console.log(dashboard)
+    console.log(user)
     return (
-        <DashboardLayout>
-            <HeroSection />
-            <StateSection dashboard={dashboard} />
-            <RecentCalls />
-        </DashboardLayout>
+        <>
+            {
+                user &&
+                <DashboardLayout>
+                    <HeroSection />
+                    <StateSection />
+                    <RecentCalls />
+                </DashboardLayout>
+            }
+        </>
+
     );
 };
 

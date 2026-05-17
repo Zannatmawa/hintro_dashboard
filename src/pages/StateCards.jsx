@@ -1,14 +1,17 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { getCallStats } from '../api/callApi'
 
-const StateCards = ({ stat, dashboard }) => {
-    // console.log(dashboard.user)
-    // const users = dashboard.user
+
+const StateCards = ({ title, value, icon }) => {
+
+
     return (
         <div className='lg:w-58 h-15 border flex items-center justify-evenly border-gray-400 rounded'>
-            <div className='mt-1 ml-2 p-5 '>img</div>
+            <div className='mt-1 ml-2 p-5 '>{icon}</div>
             <div className=' my-2 lg:w-35 w-35  lg:p-0 p-2'>
-                <h3 className='text-gray-800 font-semibold lg:text-[16px] text-[10px]'>{stat}</h3>
-                <h5 className='font-bold text-gray-900 lg:text-[20px] text-[12px]' >0</h5>
+                <h3 className='text-gray-800 font-semibold lg:text-[16px] text-[10px]'>{title}</h3>
+                <h3 className='text-gray-800 font-semibold lg:text-[16px] text-[10px]'>{value}</h3>
+                {/* <h5 className='font-bold text-gray-900 lg:text-[20px] text-[12px]' >{totalSessions}</h5> */}
             </div>
         </div>
     )

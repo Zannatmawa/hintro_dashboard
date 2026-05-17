@@ -1,19 +1,60 @@
-import React from 'react'
+
 import StateCards from './StateCards'
+import React, { useEffect, useState } from 'react'
+import { getCallStats } from '../api/callApi'
+import { FaChartPie } from "react-icons/fa";
+import { MdAccessTime } from "react-icons/md";
+import { HiSparkles } from "react-icons/hi2";
+import { BsCalendarEvent } from "react-icons/bs";
 
-const Stats = [
-    "Total Sessions", "Average Duration", "AI used", "Last Session"
-]
+const icons = [
+    {
+        icon: <FaChartPie />,
+    },
+    {
+        icon: <MdAccessTime />,
+    },
+    {
+        icon: <HiSparkles />,
+    },
+    {
+        icon: <BsCalendarEvent />,
+    },
+];
+const m = icons.map(i => i.icon);
+// console.log(m)
 
-const StateSection = ({ dashboard }) => {
-    console.log(dashboard)
+
+const stats = [
+    { title: "Total Sessions", key: "totalSessions", icon: FaChartPie },
+    { title: "Average Duration", key: "averageDuration", icon: MdAccessTime },
+    { title: "AI used", key: "totalAIInteractions", icon: HiSparkles },
+    { title: "Last Session", key: "lastSession", icon: BsCalendarEvent },
+];
+const StateSection = () => {
+    const [callData, setCallData] = useState({});
+
+    useEffect(() => {
+        getCallStats().then(data => {
+            setCallData(data);
+        });
+    }, []);
+
     return (
-        <div className='lg:mt-0 mt-5 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 mx-0 md:mx-4 mb-10'>
-            {Stats.map((stat, index) =>
-                <StateCards dashboard={dashboard} key={index} stat={stat} />
-            )}
-        </div>
-    )
-}
+        <div className='grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 mx-0 md:mx-4 mb-10'>
+            {stats.map((stat, index) => {
+                const Icon = stat.icon;
 
+                return (
+                    <StateCards
+                        key={index}
+                        title={stat.title}
+                        value={callData[stat.key]}
+                        icon={<Icon />}
+                    />
+                );
+            })}
+        </div>
+    );
+};
 export default StateSection
